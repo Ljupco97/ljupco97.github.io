@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ljupco — Web & Mobile Designer</title>
+    <meta name="description" content="Portfolio — Web & Mobile Designer" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f3f3f4;
+        --card: #ffffff;
+        --accent: #f24dd4;
+        --muted: #777;
+        --text: #111;
+        --maxw: 1200px;
+      }
+
+      /* Reset & utilities */
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto,
+          "Helvetica Neue", Arial;
+        background: var(--bg);
+        color: var(--text);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        line-height: 1.45;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .container {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 40px 24px;
+      }
+
+      /* Header */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: linear-gradient(
+          rgba(243, 243, 244, 0.85),
+          rgba(243, 243, 244, 0.7)
+        );
+        backdrop-filter: blur(6px);
+      }
+      .nav-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 12px 24px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+      }
+      .brand .logo {
+        width: 42px;
+        height: 42px;
+        border-radius: 6px;
+        background: #111;
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-weight: 700;
+      }
+      nav ul {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      nav a {
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--muted);
+        position: relative;
+        transition: color 0.25s, background 0.25s;
+        overflow: hidden;
+        padding: 6px 0;
+      }
+      nav a::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 0;
+        height: 2.5px;
+        background: var(--accent);
+        border-radius: 2px;
+        transition: width 0.35s cubic-bezier(0.2, 0.9, 0.3, 1),
+          left 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
+        z-index: 1;
+      }
+      nav a:hover,
+      nav a:focus {
+        color: var(--accent);
+      }
+      nav a:hover::after,
+      nav a:focus::after {
+        width: 100%;
+        left: 0;
+      }
+      nav a.active {
+        color: var(--accent);
+      }
+      nav a.active::after {
+        width: 100%;
+        left: 0;
+      }
+      .cta {
+        background: #111;
+        color: #fff;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 13px;
+      }
+
+      /* Hero */
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr 420px;
+        gap: 40px;
+        align-items: center;
+        padding: 60px 0;
+        animation: fadeInUp 1.2s cubic-bezier(0.2, 0.9, 0.3, 1);
+      }
+      .hero-left {
+        padding: 40px 0;
+      }
+      .eyebrow {
+        font-weight: 600;
+        color: var(--muted);
+        letter-spacing: 1px;
+      }
+      h1 {
+        margin: 12px 0 8px;
+        font-family: "Playfair Display", serif;
+        font-size: 36px;
+        line-height: 1.05;
+      }
+      h1 .secondary {
+        display: block;
+        font-size: 32px;
+        font-weight: 700;
+      }
+      p.lead {
+        color: var(--muted);
+        max-width: 720px;
+        margin-top: 18px;
+        font-size: 18px;
+      }
+
+      /* stack animation (center) */
+      .stack-wrap {
+        justify-self: center;
+        align-self: center;
+        position: relative;
+        display: grid;
+        place-items: center;
+        height: 520px;
+        perspective: 1500px;
+      }
+      .stack {
+        width: 380px;
+        height: 380px;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1);
+        animation: stackFloat 6s ease-in-out infinite;
+      }
+
+      @keyframes stackFloat {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+      }
+
+      .card {
+        position: absolute;
+        inset: 0;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(12, 12, 12, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: #fff;
+        font-size: 18px;
+        backface-visibility: hidden;
+        overflow: hidden;
+        opacity: 0;
+        animation: cardFloat 1.4s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        transform: rotate(45deg);
+        transition: all 0.6s;
+      }
+
+      .card:hover::before {
+        left: 100%;
+      }
+
+      .card.one {
+        background: linear-gradient(135deg, #1a1a1a, #111);
+        transform: rotate(-8deg) translateY(-8px);
+        z-index: 3;
+        animation-delay: 0.3s;
+      }
+      .card.two {
+        background: linear-gradient(135deg, var(--accent), #d946b5);
+        transform: rotate(6deg) translateY(6px);
+        z-index: 2;
+        animation-delay: 0.5s;
+      }
+      .card.three {
+        background: linear-gradient(135deg, #d96584, #c85a6b);
+        transform: rotate(12deg) translateY(12px);
+        z-index: 1;
+        animation-delay: 0.7s;
+      }
+
+      .card-hover:hover {
+        transform: scale(1.15) translateZ(40px) rotateZ(0deg) !important;
+        box-shadow: 0 30px 80px rgba(242, 77, 212, 0.4),
+          0 10px 30px rgba(12, 12, 12, 0.3);
+        transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+        z-index: 10 !important;
+      }
+
+      .card-hover:hover img {
+        transform: scale(1.1);
+        transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+      }
+
+      .card img {
+        transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+      }
+
+      @keyframes cardFloat {
+        0% {
+          opacity: 0;
+          transform: translateY(100px) scale(0.7) rotate(0deg);
+          filter: blur(10px);
+        }
+        50% {
+          filter: blur(0px);
+        }
+        70% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 1;
+          filter: blur(0px);
+        }
+      }
+
+      /* About */
+      .about {
+        padding: 56px 0;
+        text-align: center;
+      }
+      .about p {
+        max-width: 820px;
+        margin: 14px auto;
+        color: var(--muted);
+      }
+      .avatar {
+        width: 220px;
+        height: 220px;
+        border-radius: 12px;
+        overflow: hidden;
+        margin: 22px auto;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      }
+
+      /* Stats */
+      .stats {
+        display: flex;
+        gap: 24px;
+        justify-content: center;
+        margin-top: 12px;
+      }
+      .stat {
+        min-width: 100px;
+        text-align: center;
+      }
+      .stat h3 {
+        font-size: 28px;
+        margin: 0;
+        font-weight: 700;
+      }
+      .stat p {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      /* Services */
+      .services {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        padding: 36px 0;
+      }
+      .service {
+        background: var(--card);
+        padding: 28px;
+        border-radius: 8px;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.9s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+      }
+      .service h4 {
+        margin: 0 0 8px;
+        font-weight: 700;
+      }
+      .service p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .service .num {
+        position: absolute;
+        right: 18px;
+        bottom: 14px;
+        font-size: 48px;
+        color: rgba(0, 0, 0, 0.06);
+        font-weight: 700;
+      }
+      .services .service:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+      .services .service:nth-child(2) {
+        animation-delay: 0.4s;
+      }
+      .services .service:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+
+      /* CTA */
+      .center-cta {
+        text-align: center;
+        padding: 32px 0;
+      }
+      .btn {
+        display: inline-block;
+        background: #111;
+        color: #fff;
+        padding: 10px 18px;
+        border-radius: 8px;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+        transition: box-shadow 0.2s, background 0.3s, color 0.3s,
+          transform 0.18s;
+      }
+      .btn:hover {
+        box-shadow: 0 0 0 4px var(--accent);
+        animation: pulse 1.2s;
+        background: var(--accent);
+        color: #fff;
+        transform: translateY(-2px) scale(1.04);
+      }
+
+      /* Portfolio */
+      .portfolio {
+        padding: 36px 0;
+      }
+
+      /* Tech icons */
+      .tech {
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        padding: 28px 0;
+      }
+      .tech .icon {
+        width: 56px;
+        height: 40px;
+        border-radius: 8px;
+        background: linear-gradient(180deg, #fff, #f7f7f7);
+        display: grid;
+        place-items: center;
+        font-weight: 700;
+        color: var(--muted);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
+      }
+
+      footer {
+        padding: 36px 0;
+        text-align: center;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(242, 77, 212, 0.4);
+        }
+        70% {
+          box-shadow: 0 0 0 12px rgba(242, 77, 212, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(242, 77, 212, 0);
+        }
+      }
+      .animate-fadeInUp {
+        animation: fadeInUp 1s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+      }
+      .animate-fadeIn {
+        animation: fadeIn 1.2s ease both;
+      }
+      .animate-pulse {
+        animation: pulse 1.5s infinite;
+      }
+
+      /* Scroll to Top Button */
+      .scroll-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 55px;
+        height: 55px;
+        background: linear-gradient(135deg, var(--accent), #00e6c0);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+        box-shadow: 0 4px 20px rgba(242, 77, 212, 0.3);
+      }
+
+      .scroll-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .scroll-to-top:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 30px rgba(242, 77, 212, 0.5);
+      }
+
+      .scroll-to-top:active {
+        transform: translateY(-2px);
+      }
+
+      .scroll-to-top svg {
+        width: 24px;
+        height: 24px;
+        fill: white;
+      }
+
+      /* Mobile Burger Menu */
+      .burger-menu {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        display: none;
+      }
+
+      .burger-btn {
+        background: var(--card);
+        border: 2px solid var(--accent);
+        border-radius: 8px;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        padding: 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+      }
+
+      .burger-btn:hover {
+        background: var(--accent);
+      }
+
+      .burger-btn span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background: var(--text);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+
+      .burger-btn:hover span {
+        background: white;
+      }
+
+      .burger-btn.active span:nth-child(1) {
+        transform: rotate(45deg) translate(7px, 7px);
+        background: white;
+      }
+
+      .burger-btn.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .burger-btn.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+        background: white;
+      }
+
+      .burger-btn.active {
+        background: var(--accent);
+      }
+
+      .dropdown-menu {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(243, 243, 244, 0.98),
+          rgba(255, 255, 255, 0.95)
+        );
+        backdrop-filter: blur(10px);
+        border-top: 3px solid var(--accent);
+        border-bottom: 3px solid var(--accent);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15),
+          0 2px 8px rgba(242, 77, 212, 0.1);
+        display: none;
+        overflow: hidden;
+        padding: 10px 0;
+      }
+
+      .dropdown-menu.active {
+        display: block;
+        animation: slideDownMenu 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+      }
+
+      @keyframes slideDownMenu {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 16px 40px;
+        margin: 5px 20px;
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 18px;
+        border-radius: 12px;
+        transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+        text-align: center;
+        position: relative;
+        background: rgba(255, 255, 255, 0.7);
+        border: 2px solid transparent;
+        letter-spacing: 0.5px;
+      }
+
+      .dropdown-menu a::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 8px;
+        width: 0;
+        height: 3px;
+        background: white;
+        border-radius: 2px;
+        transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+        transform: translateX(-50%);
+      }
+
+      .dropdown-menu a:hover {
+        background: linear-gradient(135deg, var(--accent), #00e6c0);
+        color: white;
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 8px 25px rgba(242, 77, 212, 0.3);
+        border-color: var(--accent);
+      }
+
+      .dropdown-menu a:hover::before {
+        width: 50px;
+      }
+
+      .dropdown-menu a:active {
+        transform: translateY(-1px) scale(1);
+      }
+
+      /* Responsive */
+      @media (max-width: 980px) {
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 18px;
+          padding: 34px 0;
+        }
+        .stack-wrap {
+          height: 280px;
+        }
+        .stack {
+          width: 260px;
+          height: 260px;
+        }
+        .services {
+          grid-template-columns: 1fr;
+        }
+        nav ul {
+          display: none;
+        }
+        .burger-menu {
+          display: block;
+        }
+      }
+
+      /* small interactive hover */
+      .card-hover {
+        transition: transform 0.18s ease;
+      }
+
+      /* .color-pink {
+        color: var(--accent);
+      } */
+
+      .tech-icon {
+        transition: transform 0.18s, box-shadow 0.18s;
+        border-radius: 12px;
+        border: none;
+        width: 56px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        cursor: pointer;
+        position: relative;
+      }
+      .tech-icon:hover {
+        transform: translateY(-6px) scale(1.08) rotate(-4deg);
+        box-shadow: 0 8px 32px rgba(242, 77, 212, 0.13),
+          0 2px 12px rgba(0, 0, 0, 0.1);
+        z-index: 2;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
+      </svg>
+    </button>
+
+    <!-- Mobile Burger Menu -->
+    <div class="burger-menu">
+      <button class="burger-btn" id="burgerBtn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="dropdown-menu" id="dropdownMenu">
+        <a href="#portfolio">Portfolio</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+
+    <header>
+      <div class="nav-wrap container">
+        <div class="brand">
+          <a href="#" style="display: block; cursor: pointer">
+            <img
+              src="./icon for logo 2.png"
+              alt="Logo"
+              style="
+                width: 80px;
+                height: 80px;
+                object-fit: contain;
+                display: block;
+                transition: transform 0.3s ease;
+              "
+              onmouseover="this.style.transform='scale(1.05)'"
+              onmouseout="this.style.transform='scale(1)'"
+            />
+          </a>
+        </div>
+
+        <nav>
+          <ul>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a class="cta" href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- HERO -->
+      <section class="hero" aria-label="hero section">
+        <div class="hero-left">
+          <div class="eyebrow">Hello, This is Ljupco</div>
+          <h1 class="color-pink">
+            Designing and developing
+            <span class="secondary">modern web & mobile experiences</span>
+          </h1>
+          <p class="lead">
+            Elevate your digital presence with distinction. I design and develop
+            beautifully crafted web and mobile experiences focused on conversion
+            and performance.
+          </p>
+          <div style="margin-top: 18px">
+            <a class="btn" href="#contact">Contact me</a>
+          </div>
+        </div>
+
+        <div class="stack-wrap" aria-hidden="true">
+          <div class="stack" id="stack">
+            <div class="card one card-hover">
+              <img
+                src="./Street Poster.png"
+                alt="Project Mockup"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center;
+                "
+              />
+            </div>
+            <div class="card two card-hover">
+              <img
+                src="./Instagram post - 5.png"
+                alt="UI Kit"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center;
+                "
+              />
+            </div>
+            <div class="card three card-hover">
+              <img
+                src="./Mobile fitness app for behance.png"
+                alt="Brand"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center;
+                "
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="about">
+        <h3>About me</h3>
+        <p>
+          Hello, I'm Ljupco — a Web & Mobile Designer with a passion for
+          crafting exceptional digital experiences. I focus on clarity,
+          usability and delightful micro-interactions.
+        </p>
+        <div class="avatar">
+          <!-- replace with your portrait -->
+          <img src="./LIK_5283.JPG" alt="Portrait" />
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <h3>3+</h3>
+            <p>Years of Experience</p>
+          </div>
+          <div class="stat">
+            <h3>10+</h3>
+            <p>Satisfied Clients</p>
+          </div>
+          <div class="stat">
+            <h3>10+</h3>
+            <p>Projects Delivered</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 28px">
+          <a href="story.html" class="btn" target="_blank">Read My Story</a>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services">
+        <div
+          class="services-grid"
+          style="
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 24px;
+            flex-wrap: wrap;
+          "
+        >
+          <div
+            class="service-card"
+            style="
+              background: var(--card);
+              border-radius: 16px;
+              box-shadow: 0 6px 24px #f24dd41a;
+              padding: 36px 28px 28px 28px;
+              max-width: 320px;
+              min-width: 240px;
+              flex: 1 1 240px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              position: relative;
+              transition: box-shadow 0.22s;
+            "
+          >
+            <span
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 56px;
+                height: 56px;
+                background: #f7eafd;
+                border-radius: 14px;
+                margin-bottom: 18px;
+              "
+              ><svg width="32" height="32" fill="none" viewBox="0 0 24 24">
+                <rect
+                  x="3"
+                  y="5"
+                  width="18"
+                  height="14"
+                  rx="3"
+                  stroke="#f24dd4"
+                  stroke-width="2"
+                />
+                <rect x="7" y="9" width="10" height="2" rx="1" fill="#f24dd4" />
+                <rect
+                  x="7"
+                  y="13"
+                  width="6"
+                  height="2"
+                  rx="1"
+                  fill="#f24dd4"
+                /></svg
+            ></span>
+            <h4 style="font-size: 1.18rem; font-weight: 700; margin: 0 0 8px 0">
+              Website Design
+            </h4>
+            <p
+              style="
+                color: var(--muted);
+                font-size: 1rem;
+                text-align: center;
+                margin: 0 0 10px 0;
+              "
+            >
+              I create user-centered designs that enhance engagement and
+              usability.
+            </p>
+            <div
+              class="num"
+              style="
+                position: absolute;
+                right: 18px;
+                bottom: 14px;
+                font-size: 2.2rem;
+                color: rgba(242, 77, 212, 0.08);
+                font-weight: 800;
+              "
+            >
+              01
+            </div>
+          </div>
+          <div
+            class="service-card"
+            style="
+              background: var(--card);
+              border-radius: 16px;
+              box-shadow: 0 6px 24px #4dd4f21a;
+              padding: 36px 28px 28px 28px;
+              max-width: 320px;
+              min-width: 240px;
+              flex: 1 1 240px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              position: relative;
+              transition: box-shadow 0.22s;
+            "
+          >
+            <span
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 56px;
+                height: 56px;
+                background: #eaf7fd;
+                border-radius: 14px;
+                margin-bottom: 18px;
+              "
+              ><svg width="32" height="32" fill="none" viewBox="0 0 24 24">
+                <rect
+                  x="7"
+                  y="2"
+                  width="10"
+                  height="20"
+                  rx="3"
+                  stroke="#4dd4f2"
+                  stroke-width="2"
+                />
+                <rect
+                  x="10"
+                  y="18"
+                  width="4"
+                  height="2"
+                  rx="1"
+                  fill="#4dd4f2"
+                /></svg
+            ></span>
+            <h4 style="font-size: 1.18rem; font-weight: 700; margin: 0 0 8px 0">
+              Mobile App Design
+            </h4>
+            <p
+              style="
+                color: var(--muted);
+                font-size: 1rem;
+                text-align: center;
+                margin: 0 0 10px 0;
+              "
+            >
+              Design and prototype intuitive mobile experiences that scale.
+            </p>
+            <div
+              class="num"
+              style="
+                position: absolute;
+                right: 18px;
+                bottom: 14px;
+                font-size: 2.2rem;
+                color: rgba(77, 212, 242, 0.08);
+                font-weight: 800;
+              "
+            >
+              02
+            </div>
+          </div>
+          <div
+            class="service-card"
+            style="
+              background: var(--card);
+              border-radius: 16px;
+              box-shadow: 0 6px 24px #f2b84d1a;
+              padding: 36px 28px 28px 28px;
+              max-width: 320px;
+              min-width: 240px;
+              flex: 1 1 240px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              position: relative;
+              transition: box-shadow 0.22s;
+            "
+          >
+            <span
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 56px;
+                height: 56px;
+                background: #fdf7ea;
+                border-radius: 14px;
+                margin-bottom: 18px;
+              "
+              ><svg width="32" height="32" fill="none" viewBox="0 0 24 24">
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="7"
+                  stroke="#f2b84d"
+                  stroke-width="2"
+                />
+                <path
+                  d="M12 9v3l2 2"
+                  stroke="#f2b84d"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                /></svg
+            ></span>
+            <h4 style="font-size: 1.18rem; font-weight: 700; margin: 0 0 8px 0">
+              Brand Identity
+            </h4>
+            <p
+              style="
+                color: var(--muted);
+                font-size: 1rem;
+                text-align: center;
+                margin: 0 0 10px 0;
+              "
+            >
+              Crafting visual systems and identity that tell your story with
+              clarity.
+            </p>
+            <div
+              class="num"
+              style="
+                position: absolute;
+                right: 18px;
+                bottom: 14px;
+                font-size: 2.2rem;
+                color: rgba(242, 184, 77, 0.08);
+                font-weight: 800;
+              "
+            >
+              03
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- <div class="center-cta">
+        <a href="#contact" class="btn">Contact me</a>
+      </div> -->
+
+      <!-- PORTFOLIO -->
+      <section id="portfolio" class="portfolio">
+        <h3 style="text-align: center">Portfolio Showcase</h3>
+        <p
+          style="
+            text-align: center;
+            color: var(--muted);
+            max-width: 760px;
+            margin: 8px auto 36px;
+          "
+        >
+          Explore recent projects — websites, apps and brand work. Click any
+          card to learn more.
+        </p>
+
+        <div class="portfolio-list">
+          <!-- Card 1 -->
+          <div class="portfolio-card glass slide-in-left">
+            <div class="portfolio-content">
+              <div
+                class="portfolio-img"
+                style="background-image: url(./Easy\ meall.png)"
+              ></div>
+              <div class="portfolio-info">
+                <h4>EasyMeal</h4>
+                <p>Food ordering web & mobile app</p>
+                <a class="view-btn" href="easymeal.html" target="_blank"
+                  >View Project</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="portfolio-card glass slide-in-right">
+            <div class="portfolio-content">
+              <div
+                class="portfolio-img"
+                style="background-image: url(./Instagram\ post\ -\ 5.png)"
+              ></div>
+              <div class="portfolio-info">
+                <h4>iFitness</h4>
+                <p>Online fitness consultation & booking</p>
+                <a class="view-btn" href="ifitness.html" target="_blank"
+                  >View Project</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="portfolio-card glass slide-in-left">
+            <div class="portfolio-content">
+              <div
+                class="portfolio-img"
+                style="background-image: url(./Instagram\ post\ -\ 1.png)"
+              ></div>
+              <div class="portfolio-info">
+                <h4>IQ Intelligence</h4>
+                <p>Corporate site and multi-language platform</p>
+                <a class="view-btn" href="iqintelligence.html" target="_blank"
+                  >View Project</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="portfolio-card glass slide-in-right">
+            <div class="portfolio-content">
+              <div
+                class="portfolio-img"
+                style="
+                  background-image: url(./Instagram\ post\ -\ 3\ IMB\ CARDS.png);
+                "
+              ></div>
+              <div class="portfolio-info">
+                <h4>IMD</h4>
+                <p>Brand & print design</p>
+                <a class="view-btn" href="imd.html" target="_blank"
+                  >View Project</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Card 5 - NEW Web Car Mockup -->
+          <div class="portfolio-card glass slide-in-left">
+            <div class="portfolio-content">
+              <div
+                class="portfolio-img"
+                style="
+                  background-image: url(./Web\ Car\ Mockup\ Second\ Combinarion\ laptop\ mobile\ mockup.png);
+                "
+              ></div>
+              <div class="portfolio-info">
+                <h4>Auto Web Platform</h4>
+                <p>Responsive car dealership web & mobile platform</p>
+                <a class="view-btn" href="auto-platform.html" target="_blank"
+                  >View Project</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <style>
+          .portfolio-list {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            max-width: 900px;
+            margin: 0 auto;
+          }
+          .portfolio-card {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            background: var(--card);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+            opacity: 0;
+            transform: translateY(40px);
+            animation: cardFadeIn 0.8s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+          }
+          .portfolio-card.slide-in-left {
+            animation-delay: 0.1s;
+          }
+          .portfolio-card.slide-in-right {
+            animation-delay: 0.2s;
+          }
+          .portfolio-card:nth-child(3) {
+            animation-delay: 0.3s;
+          }
+          .portfolio-card:nth-child(4) {
+            animation-delay: 0.4s;
+          }
+          .portfolio-card:nth-child(5) {
+            animation-delay: 0.5s;
+          }
+          @keyframes cardFadeIn {
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          .portfolio-card .accent-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 6px;
+            z-index: 10;
+          }
+          .portfolio-content {
+            display: contents;
+          }
+          .portfolio-img {
+            width: 100%;
+            height: 100%;
+            min-height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.3, 1);
+          }
+          .portfolio-card:hover .portfolio-img {
+            transform: scale(1.08);
+          }
+          .portfolio-info {
+            padding: 36px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 14px;
+          }
+          .portfolio-info h4 {
+            margin: 0;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.2;
+          }
+          .portfolio-info p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.6;
+          }
+          .view-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--text);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+            align-self: flex-start;
+            margin-top: 8px;
+          }
+          .view-btn:hover {
+            transform: translateX(4px);
+            background: var(--accent);
+          }
+          .portfolio-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+          }
+          @media (max-width: 700px) {
+            .portfolio-list {
+              gap: 20px;
+            }
+            .portfolio-card {
+              grid-template-columns: 1fr;
+            }
+            .portfolio-img {
+              min-height: 220px;
+            }
+            .portfolio-info {
+              padding: 24px 20px;
+            }
+            .portfolio-card .accent-bar {
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: auto;
+              width: 100%;
+              height: 5px;
+            }
+          }
+        </style>
+      </section>
+
+      <!-- TECH -->
+      <section class="tech" aria-label="tech stack" style="padding: 36px 0">
+        <section class="tech-stack">
+          <h2>Tech Stack</h2>
+          <p>
+            Tools and technologies I use to craft quality designs and modern web
+            experiences.
+          </p>
+
+          <div class="tools">
+            <div class="tool">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/5968/5968472.png"
+                alt="Adobe Illustrator"
+              />
+              <span>Adobe Illustrator</span>
+            </div>
+            <div class="tool">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png"
+                alt="Figma"
+              />
+              <span>Figma</span>
+            </div>
+            <div class="tool">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/732/732212.png"
+                alt="HTML5"
+              />
+              <span>HTML5</span>
+            </div>
+            <div class="tool">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/732/732190.png"
+                alt="CSS3"
+              />
+              <span>CSS3</span>
+            </div>
+            <div class="tool">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png"
+                alt="JavaScript"
+              />
+              <span>JavaScript</span>
+            </div>
+          </div>
+
+          <style>
+            .tech-stack {
+              text-align: center;
+              padding: 4rem 1rem;
+              background: #f5f6fa;
+            }
+
+            .tech-stack h2 {
+              font-size: 2rem;
+              margin-bottom: 1rem;
+              color: #222;
+            }
+
+            .tech-stack p {
+              color: #555;
+              margin-bottom: 2rem;
+              font-size: 1rem;
+            }
+
+            .tools {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: center;
+              gap: 2rem;
+            }
+
+            .tool {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              transition: transform 0.3s ease;
+            }
+
+            .tool:hover {
+              transform: translateY(-5px);
+            }
+
+            .tool img {
+              width: 70px;
+              height: 70px;
+              margin-bottom: 0.5rem;
+            }
+
+            .tool span {
+              font-weight: 600;
+              color: #333;
+              font-size: 0.95rem;
+            }
+          </style>
+        </section>
+      </section>
+
+      <!-- CONTACT FORM -->
+      <section
+        id="contact"
+        class="contact-section"
+        style="padding: 48px 0; max-width: 520px; margin: 0 auto"
+      >
+        <h3 style="text-align: center; margin-bottom: 18px">Contact Me</h3>
+        <form
+          action="https://formspree.io/f/mzzjygzq"
+          method="POST"
+          class="contact-form"
+          autocomplete="off"
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            background: var(--card);
+            border-radius: 12px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+            padding: 32px 24px;
+          "
+        >
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            required
+            style="
+              padding: 12px;
+              border-radius: 6px;
+              border: 1px solid #eee;
+              font-size: 15px;
+            "
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            required
+            style="
+              padding: 12px;
+              border-radius: 6px;
+              border: 1px solid #eee;
+              font-size: 15px;
+            "
+          />
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            rows="5"
+            required
+            style="
+              padding: 12px;
+              border-radius: 6px;
+              border: 1px solid #eee;
+              font-size: 15px;
+              resize: vertical;
+            "
+          ></textarea>
+          <button
+            type="submit"
+            class="btn"
+            style="margin-top: 8px; align-self: flex-end"
+          >
+            Send Message
+          </button>
+          <div
+            class="form-status"
+            style="min-height: 22px; font-size: 14px; color: var(--muted)"
+          ></div>
+        </form>
+      </section>
+
+      <footer>
+        <div style="margin-bottom: 10px">
+          © <strong>Ljupco Design</strong> — Designed & Developed by Ljupco
+          Bogoevski
+        </div>
+        <div style="font-size: 12px; color: var(--muted)">
+          <a href="#contact">Contact</a> · <a href="#">Portfolio</a>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      /* ---------------------------
+   Small interaction scripts
+   --------------------------- */
+
+      /* Stack mouse rotate */
+      (function () {
+        const stack = document.getElementById("stack");
+        if (!stack) return;
+        stack.addEventListener("mousemove", (e) => {
+          const r = stack.getBoundingClientRect();
+          const x = e.clientX - r.left - r.width / 2;
+          const y = e.clientY - r.top - r.height / 2;
+          const rx = (y / r.height) * -12;
+          const ry = (x / r.width) * 12;
+          stack.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0)`;
+        });
+        stack.addEventListener(
+          "mouseleave",
+          () => (stack.style.transform = "")
+        );
+      })();
+
+      /* Portfolio cards are now handled by CSS animations */
+
+      /* Accessibility: smooth scrolling for anchor links */
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+
+      // Contact form handler with Formspree
+      (function () {
+        const form = document.querySelector(".contact-form");
+        if (!form) return;
+        const status = form.querySelector(".form-status");
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Show loading state
+          status.textContent = "Sending...";
+          status.style.color = "var(--muted)";
+
+          // Get form data
+          const formData = new FormData(form);
+
+          // Send to Formspree
+          fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: {
+              Accept: "application/json",
+            },
+          })
+            .then((response) => {
+              if (response.ok) {
+                status.textContent =
+                  "Thank you! Your message has been sent successfully.";
+                status.style.color = "#22c55e"; // Green for success
+                form.reset();
+              } else {
+                return response.json().then((data) => {
+                  if (data.errors) {
+                    status.textContent = data.errors
+                      .map((error) => error.message)
+                      .join(", ");
+                  } else {
+                    status.textContent =
+                      "Oops! There was a problem submitting your form.";
+                  }
+                  status.style.color = "#ef4444"; // Red for error
+                });
+              }
+            })
+            .catch((error) => {
+              status.textContent =
+                "Oops! Something went wrong. Please try again.";
+              status.style.color = "#ef4444";
+              console.error("Error:", error);
+            });
+        });
+      })();
+
+      // Scroll to Top Button Functionality
+      (function () {
+        const scrollToTopBtn = document.getElementById("scrollToTop");
+
+        if (!scrollToTopBtn) return;
+
+        // Show/hide button based on scroll position
+        window.addEventListener("scroll", function () {
+          if (window.pageYOffset > 300) {
+            scrollToTopBtn.classList.add("visible");
+          } else {
+            scrollToTopBtn.classList.remove("visible");
+          }
+        });
+
+        // Scroll to top when clicked
+        scrollToTopBtn.addEventListener("click", function () {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
+      })();
+
+      // Burger Menu Functionality
+      (function () {
+        const burgerBtn = document.getElementById("burgerBtn");
+        const dropdownMenu = document.getElementById("dropdownMenu");
+
+        if (!burgerBtn || !dropdownMenu) return;
+
+        burgerBtn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          burgerBtn.classList.toggle("active");
+          dropdownMenu.classList.toggle("active");
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener("click", function (e) {
+          if (!e.target.closest(".burger-menu")) {
+            burgerBtn.classList.remove("active");
+            dropdownMenu.classList.remove("active");
+          }
+        });
+
+        // Close menu when clicking a link
+        dropdownMenu.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            burgerBtn.classList.remove("active");
+            dropdownMenu.classList.remove("active");
+          });
+        });
+
+        // Close menu on window resize to desktop
+        window.addEventListener("resize", function () {
+          if (window.innerWidth > 980) {
+            burgerBtn.classList.remove("active");
+            dropdownMenu.classList.remove("active");
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

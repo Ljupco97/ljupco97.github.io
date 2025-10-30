@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auto Web Platform - Ljupco Design</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f3f3f4;
+        --card: #ffffff;
+        --accent: #00d4aa;
+        --muted: #777;
+        --text: #111;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Montserrat", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 24px;
+      }
+      .back-btn {
+        display: inline-block;
+        background: #111;
+        color: #fff;
+        padding: 8px 16px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        margin-bottom: 32px;
+        transition: background 0.3s;
+      }
+      .back-btn:hover {
+        background: var(--accent);
+      }
+      .project-header {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+      .project-header h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        margin: 0 0 16px;
+        color: var(--accent);
+      }
+      .project-header p {
+        font-size: 1.2rem;
+        color: var(--muted);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .project-img {
+        width: 100%;
+        height: 400px;
+        background-image: url("./Web Car Mockup Second Combinarion laptop mockup.png");
+        background-size: cover;
+        background-position: center;
+        border-radius: 12px;
+        margin: 32px 0;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+      }
+      .project-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin: 48px 0;
+      }
+      .detail-card {
+        background: var(--card);
+        padding: 32px;
+        border-radius: 12px;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+      }
+      .detail-card h3 {
+        color: var(--accent);
+        margin: 0 0 16px;
+        font-size: 1.3rem;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+      }
+      .tag {
+        background: var(--accent);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 16px;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      /* Mobile Burger Menu */
+      .burger-menu {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        display: none;
+      }
+
+      .burger-btn {
+        background: var(--card);
+        border: 2px solid var(--accent);
+        border-radius: 8px;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        padding: 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+      }
+
+      .burger-btn:hover {
+        background: var(--accent);
+      }
+
+      .burger-btn span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background: var(--text);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+
+      .burger-btn:hover span {
+        background: white;
+      }
+
+      .burger-btn.active span:nth-child(1) {
+        transform: rotate(45deg) translate(7px, 7px);
+        background: white;
+      }
+
+      .burger-btn.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .burger-btn.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+        background: white;
+      }
+
+      .burger-btn.active {
+        background: var(--accent);
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: var(--card);
+        border: 2px solid var(--accent);
+        border-radius: 8px;
+        min-width: 200px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        display: none;
+        overflow: hidden;
+      }
+
+      .dropdown-menu.active {
+        display: block;
+        animation: slideDown 0.3s ease;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 15px 20px;
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        border-bottom: 1px solid rgba(0, 212, 170, 0.2);
+        transition: all 0.2s ease;
+      }
+
+      .dropdown-menu a:last-child {
+        border-bottom: none;
+      }
+
+      .dropdown-menu a:hover {
+        background: var(--accent);
+        color: white;
+        padding-left: 25px;
+      }
+
+      @media (max-width: 768px) {
+        .project-details {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+        .project-header h1 {
+          font-size: 2rem;
+        }
+        .burger-menu {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Mobile Burger Menu -->
+    <div class="burger-menu">
+      <button class="burger-btn" id="burgerBtn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="dropdown-menu" id="dropdownMenu">
+        <a href="index.html#portfolio">Portfolio</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <a href="index.html" class="back-btn">← Back to Portfolio</a>
+
+      <div class="project-header">
+        <h1>Auto Web Platform</h1>
+        <p>
+          A modern, responsive car dealership web platform featuring interactive
+          showcases, detailed vehicle information, and seamless user experience
+          across desktop and mobile devices.
+        </p>
+      </div>
+
+      <div class="project-img"></div>
+
+      <div class="project-details">
+        <div class="detail-card">
+          <h3>Project Overview</h3>
+          <p>
+            Designed and developed a comprehensive automotive web platform that
+            allows users to browse, compare, and explore vehicles with an
+            engaging, interactive interface. The platform features dynamic car
+            showcases, filtering systems, and detailed vehicle specifications,
+            optimized for both laptop and mobile experiences.
+          </p>
+          <div class="tags">
+            <span class="tag">Web Design</span>
+            <span class="tag">UI/UX</span>
+            <span class="tag">Automotive</span>
+          </div>
+        </div>
+
+        <div class="detail-card">
+          <h3>Key Features</h3>
+          <ul style="margin: 0; padding-left: 20px">
+            <li>Interactive vehicle showcase</li>
+            <li>Advanced search & filtering system</li>
+            <li>Fully responsive design for all devices</li>
+            <li>Virtual tour capabilities</li>
+            <li>Dealer contact integration</li>
+            <li>Performance-optimized interface</li>
+            <li>Mobile-first approach</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Responsive</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Burger Menu Functionality
+      const burgerBtn = document.getElementById("burgerBtn");
+      const dropdownMenu = document.getElementById("dropdownMenu");
+
+      burgerBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        burgerBtn.classList.toggle("active");
+        dropdownMenu.classList.toggle("active");
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener("click", function (e) {
+        if (!e.target.closest(".burger-menu")) {
+          burgerBtn.classList.remove("active");
+          dropdownMenu.classList.remove("active");
+        }
+      });
+
+      // Close menu when clicking a link
+      dropdownMenu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          burgerBtn.classList.remove("active");
+          dropdownMenu.classList.remove("active");
+        });
+      });
+    </script>
+  </body>
+</html>
